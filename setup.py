@@ -71,7 +71,7 @@ def test_part1():
   assert {{name}}.part1(data) == expected
 
 def test_part2_example_1():
- data = '''
+  data = '''
 1122
 1232'''[1:]
   assert {{name}}.part2(data) == -1
