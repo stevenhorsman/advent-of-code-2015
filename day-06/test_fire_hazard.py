@@ -1,5 +1,5 @@
 import fire_hazard
-import fileinput
+import fileinput, pytest
 
 def test_part1_example_1():
   data = 'turn on 0,0 through 999,999'
@@ -45,6 +45,7 @@ def test_part2_example_4():
   data = 'turn off 0,0 through 0,0'
   assert fire_hazard.part2(data) == 0
 
+@pytest.mark.skip(reason="Takes 10s to run")
 def test_part2():
   with open(fire_hazard.input_file) as f:
     data = f.read()
