@@ -25,9 +25,9 @@ def main():
     create_test_contents(day_string + os.path.sep + 'test_' + name + ".py", name)
 
     input_url='https://adventofcode.com/'+str(year)+'/day/'+str(int(day))+'/input'
-    session_id="53616c7465645f5f6730fb47cddb535ab7e34f8fb99e7c5e51218e021457bb610c7e7c3ff86af9f5ce9b646da502b2ae"
+    session_id="53616c7465645f5fb8f30ae0afd8a73c8b8906d0fe2b1d514e08195073801e9a906f8e9c3809ccbefb8612d24233e39a"
     cookies = {"session": session_id}
-    headers = {"User-Agent": "advent-of-code-data v0.8.3"}
+    headers = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:82.0) Gecko/20100101 Firefox/82.0"}
 
     response = requests.get(url=input_url, cookies=cookies, headers=headers)
     response.raise_for_status() # ensure we notice bad responses
