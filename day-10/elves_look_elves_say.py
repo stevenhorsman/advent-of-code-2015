@@ -1,16 +1,13 @@
 import re
+from itertools import groupby
 
 input_file = 'day-10/input.txt'
 
 def generate_sequence(input, iterations):
   for _ in range(iterations):
-    groups = [m.group(0) for m in re.finditer(r"(\d)\1*", input)]
-    result = ''
-    for group in groups:
-      result += str(len(group)) + group[0]
-    # print(input + ' -> ' + result)
-    input = result
-  return result
+    # input = ''.join([str(len(group)) + group[0] for group in [m.group(0) for m in re.finditer(r"(\d)\1*", input)]]) # 12s
+    input = ''.join(str(len(list(g))) + k for k, g in groupby(input)) # 10s
+  return input
 
 def part1(input, iterations = 40):
   return len(generate_sequence(input, iterations))

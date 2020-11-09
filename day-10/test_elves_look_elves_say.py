@@ -1,5 +1,5 @@
 import elves_look_elves_say
-import fileinput
+import fileinput, pytest
 
 def test_generate_sequence_example_1():
   data = "1"
@@ -23,6 +23,7 @@ def test_part1():
   expected = 492982
   assert elves_look_elves_say.part1(data) == expected
 
+@pytest.mark.skip(reason="Takes 10s to run")
 def test_part2():
   with open(elves_look_elves_say.input_file) as f:
     data = f.read()

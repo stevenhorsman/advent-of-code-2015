@@ -1,5 +1,5 @@
 import stocking_stuffer
-import fileinput
+import fileinput, pytest
 
 def test_part1_example_1():
   data = 'abcdef'
@@ -15,6 +15,7 @@ def test_part1():
   expected = 282749
   assert stocking_stuffer.part1(data) == expected
 
+@pytest.mark.skip(reason="Takes 16s to run")
 def test_part2():
   with open(stocking_stuffer.input_file) as f:
     data = f.read()
