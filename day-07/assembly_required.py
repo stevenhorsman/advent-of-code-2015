@@ -14,7 +14,7 @@ def get_inputs(wires, inputs, indexes):
 
 def part1(input_file, variable = 'a'):
   wires = {}
-  instructions = sorted(input_file.splitlines(), key=lambda line: len(line))
+  instructions = input_file.splitlines()
   while instructions:
     line = instructions.pop(0)
     input, output = line.split(' -> ')
