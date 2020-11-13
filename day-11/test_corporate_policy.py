@@ -20,10 +20,6 @@ def test_part1_example_1():
   data = 'abcdefgh'
   assert corporate_policy.part1(data) == 'abcdffaa'
 
-def test_part1_example_2():
-  data = 'ghijklmn'
-  assert corporate_policy.part1(data) == 'ghjaabcc'
-
 def test_part1():
   with open(corporate_policy.input_file) as f:
     data = f.read()

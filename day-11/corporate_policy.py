@@ -30,7 +30,6 @@ def increment_string(input):
     elif ord(input[index]) < 122:
       input = input[:index] + chr(ord(input[index]) + 1) + input[index + 1:]
       break
-  # print(input)
   return input
 
 def part2(input):
