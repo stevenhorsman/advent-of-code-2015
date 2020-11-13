@@ -16,11 +16,10 @@ def contains_double_pair(string):
   return len(double_list) >= 2
 
 def part1(input):
-  input = increment_string(input)
-  max = 10000000000000
-  while not is_valid(input) and max > 0:
+  while True:
     input = increment_string(input)
-    max -= 1
+    if is_valid(input):
+      break
   return input
 
 def increment_string(input):

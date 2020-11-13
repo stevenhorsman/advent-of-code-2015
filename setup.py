@@ -61,7 +61,7 @@ def test_part1_example_1():
   assert {{name}}.part1(data) == -1
 
 def test_part1_example_2():
-  data = "1111"
+  data = '1111'
   assert {{name}}.part1(data) == -1
 
 def test_part1():
@@ -77,7 +77,7 @@ def test_part2_example_1():
   assert {{name}}.part2(data) == -1
 
 def test_part2_example_2():
-  data = "1221"
+  data = '1221'
   assert {{name}}.part2(data) == -1
 
 def test_part2():
