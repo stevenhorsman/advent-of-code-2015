@@ -1,11 +1,4 @@
-import wizard_simulator
-import fileinput
-
-def test_simulate_fight():
-  assert wizard_simulator.simulate_fight(13, 8, 10, 250, ['Poison', 'Missile']) == True
-
-def test_simulate_fight_example_2():
-  assert wizard_simulator.simulate_fight(14, 8, 10, 250, ['Recharge', 'Shield', 'Drain', 'Poison', 'Missile']) == True
+import wizard_simulator, fileinput, pytest
 
 def test_part1_example_1():
   data = '''
@@ -19,6 +12,7 @@ Hit Points: 14
 Damage: 8'''[1:]
   assert wizard_simulator.part1(data, 10, 250) == 229 + 73 + 173 + 113 + 53
 
+@pytest.mark.skip(reason="Takes 160s to run")
 def test_part1():
   with open(wizard_simulator.input_file) as f:
     data = f.read()
@@ -37,6 +31,7 @@ Hit Points: 14
 Damage: 8'''[1:]
   assert wizard_simulator.part2(data, 15, 250) == 588
 
+@pytest.mark.skip(reason="Takes 46s to run")
 def test_part2():
   with open(wizard_simulator.input_file) as f:
     data = f.read()

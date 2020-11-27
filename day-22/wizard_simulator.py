@@ -26,7 +26,6 @@ class GameState:
   mana_used: int = 0
   effects_list: List[Spell] = field(default_factory=list)
 
-
 SPELLS = {
   'Missile': Spell('Magic Missile', 53, 4, 0, 0, 0, 0),
   'Drain': Spell('Drain', 73, 2, 0, 2, 0, 0, False),
@@ -35,9 +34,9 @@ SPELLS = {
   'Recharge': Spell('Recharge', 229, 0, 0, 0, 101, 5)
 }
 
-least_mana_used = sys.maxsize
+least_mana_used = 0
 
-def simulate(game_state, spell_history):
+def simulate(game_state):
   global least_mana_used
   player_armour = 0
 
@@ -59,7 +58,6 @@ def simulate(game_state, spell_history):
 
   if new_gs.boss_hp <= 0:
     least_mana_used = min(new_gs.mana_used, least_mana_used)
-    print(str(least_mana_used) + ':' + ','.join(spell_history))
     return True
 
   if new_gs.mana_used >= least_mana_used:
@@ -74,14 +72,12 @@ def simulate(game_state, spell_history):
       spell_gs.player_mana -= spell.cost
       spell_gs.mana_used += spell.cost
       spell_gs.effects_list.append(spell)
-      new_spell_history = list(spell_history)
-      new_spell_history.append(spell.name)
-      simulate(spell_gs, new_spell_history)
+      simulate(spell_gs)
   else:
     new_gs.player_hp -= max(1, new_gs.boss_damage - player_armour)
     if new_gs.player_hp > 0:
       new_gs.player_turn = True
-      simulate(new_gs, spell_history)
+      simulate(new_gs)
 
 def simulate_fight(boss_hp, boss_damage, player_hp, player_mana, spell_list):
   # print(boss_hp, boss_damage, player_hp, player_mana, spell_list)
@@ -186,15 +182,18 @@ def simulate_fight(boss_hp, boss_damage, player_hp, player_mana, spell_list):
   print(f'- Boss has {boss_hp} hit points')
   return None
 
-def part1(input, player_hp = 50, player_mana = 500):
+def find_least_mana_used(input, player_hp, player_mana, hard_mode):
+  global least_mana_used
+  least_mana_used = sys.maxsize
   boss_hp, boss_damage = map(int, list(re.match(r"Hit Points: (\d+)\nDamage: (\d+)", input).groups()))
-  simulate(GameState(boss_hp, boss_damage, player_hp, player_mana), [])
+  simulate(GameState(boss_hp, boss_damage, player_hp, player_mana, hard_mode))
   return least_mana_used
 
+def part1(input, player_hp = 50, player_mana = 500):
+  return find_least_mana_used(input, player_hp, player_mana, False)
+
 def part2(input, player_hp = 50, player_mana = 500):
-  boss_hp, boss_damage = map(int, list(re.match(r"Hit Points: (\d+)\nDamage: (\d+)", input).groups()))
-  simulate(GameState(boss_hp, boss_damage, player_hp, player_mana, True), [])
-  return least_mana_used
+    return find_least_mana_used(input, player_hp, player_mana, True)
 
 if __name__ == "__main__":
   with open(input_file) as f:
